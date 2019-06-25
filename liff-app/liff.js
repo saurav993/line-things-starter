@@ -66,12 +66,12 @@ function uiToggleStateButton(pressed) {
 }
 
 function uiTemp(val) {
-	const el = document.getElementById("Temp-val");
+	const el = document.getElementById("temp-val");
 	   el.innerText = val;
 	   
 }
 function uiHumid(val) {
-	const el = document.getElementById("Humid-val");
+	const el = document.getElementById("humid-val");
 	   el.innerText = val;
 	   
 }
