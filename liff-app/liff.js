@@ -1,5 +1,5 @@
 // User service UUID: Change this to your generated service UUID
-const USER_SERVICE_UUID         = 'f6c301b2-3ca3-49e0-9588-b7d0c1ac5925'; // LED, Button
+const USER_SERVICE_UUID         = '1993b7df-6130-4c1d-8c10-92627e201398'; // LED, Button
 // User service characteristics
 const LED_CHARACTERISTIC_UUID   = 'E9062E71-9E62-4BC6-B0D3-35CDCD9B027B';
 const BTN_CHARACTERISTIC_UUID   = '62FBD229-6EDD-4D1A-B554-5C4E1BB29169';
@@ -37,7 +37,7 @@ function handlerToggleLed() {
 
 function uiToggleLedButton(state) {
     const el = document.getElementById("btn-led-toggle");
-    el.innerText = state ? "Switch HUMIDIFIER OFF" : "Switch HUMIDIFIER ON";
+    el.innerText = state ? "Switch LED OFF" : "Switch LED ON";
 
     if (state) {
       el.classList.add("led-on");
@@ -65,14 +65,30 @@ function uiToggleStateButton(pressed) {
     }
 }
 
-//function uiTemp(val1) {
-	//const el = document.getElementById("temp-val");
-		//el.innerText = val1;
-//}
-
-function uiHumid(val2) {
+function uiTemp(val) {
+	const el = document.getElementById("temp-val");
+	   el.innerText = val;
+	   
+}
+function uiHumid(val) {
 	const el = document.getElementById("humid-val");
-		el.innerText = val2;
+	   el.innerText = val;
+	   
+}
+function uiPres(val) {
+	const el = document.getElementById("pres-val");
+	   el.innerText = val;
+	   
+}
+function uiMois(val) {
+	const el = document.getElementById("mois-val");
+	   el.innerText = val;
+	   
+}
+function uiLight(val) {
+	const el = document.getElementById("light-val");
+	   el.innerText = val;
+	   
 }
 
 function uiToggleDeviceConnected(connected) {
@@ -255,19 +271,9 @@ function liffGetButtonStateCharacteristic(characteristic) {
     // (Get notified when button state changes)
     characteristic.startNotifications().then(() => {
         characteristic.addEventListener('characteristicvaluechanged', e => {
-            //const val1 = (new Uint8Array(e.target.value.buffer))[0];
-            //uiTemp(val1);			
-			//if (val1 > 0) {
-                // press
-                //uiToggleStateButton(true);
-            //} else {
-                //// release
-                //uiToggleStateButton(false);
-                //uiCountPressButton();
-            //}
-			const val2 = (new Uint8Array(e.target.value.buffer))[0];
-			uiHumid(val2);
-			if (val2 > 0) {
+            const val = (new Uint8Array(e.target.value.buffer))[0];
+			uiTemp(val);
+            if (val > 0) {
                 // press
                 uiToggleStateButton(true);
             } else {
