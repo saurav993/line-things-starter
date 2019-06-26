@@ -70,24 +70,24 @@ function uiTemp(val) {
 	   el.innerText = val;
 	   
 }
-function uiHumid(val) {
+function uiHumid(val2) {
 	const el = document.getElementById("humid-val");
-	   el.innerText = val;
+	   el.innerText = val2;
 	   
 }
-function uiPres(val) {
+function uiPres(val3) {
 	const el = document.getElementById("pres-val");
-	   el.innerText = val;
+	   el.innerText = val3;
 	   
 }
-function uiMois(val) {
+function uiMois(val4) {
 	const el = document.getElementById("mois-val");
-	   el.innerText = val;
+	   el.innerText = val4;
 	   
 }
-function uiLight(val) {
+function uiLight(val5) {
 	const el = document.getElementById("light-val");
-	   el.innerText = val;
+	   el.innerText = val5;
 	   
 }
 
@@ -281,8 +281,9 @@ function liffGetButtonStateCharacteristic(characteristic) {
                 uiToggleStateButton(false);
                 uiCountPressButton();
             }
-			uiHumid(val);
-			if (val > 0) {
+			const val2 = (new Uint8Array(e.target.value.buffer))[0];
+			uiHumid(val2);
+			if (val2 > 0) {
                 // press
                 uiToggleStateButton(true);
             } else {
@@ -290,8 +291,9 @@ function liffGetButtonStateCharacteristic(characteristic) {
                 uiToggleStateButton(false);
                 uiCountPressButton();
             }
-			uiPres(val);
-			if (val > 0) {
+			const val3 = (new Uint8Array(e.target.value.buffer))[0];
+			uiPres(val3);
+			if (val3 > 0) {
                 // press
                 uiToggleStateButton(true);
             } else {
