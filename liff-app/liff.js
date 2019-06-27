@@ -285,23 +285,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
     });
-	
-	characteristic.startNotifications().then(() => {
-        characteristic.addEventListener('characteristicvaluechanged', e => {
-            const val2 = (new Uint8Array(e.target.value.buffer))[0];
-			uiHumid(val2);
-            if (val2 > 0) {
-                // press
-                uiToggleStateButton(true);
-            } else {
-                // release
-                uiToggleStateButton(false);
-                uiCountPressButton();
-            }
-        });
-    }).catch(error => {
-        uiStatusError(makeErrorMsg(error), false);
-    });
+
 }
 
 function liffToggleDeviceLedState(state) {
