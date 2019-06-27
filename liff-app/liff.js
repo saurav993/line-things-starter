@@ -281,16 +281,6 @@ function liffGetButtonStateCharacteristic(characteristic) {
                 uiToggleStateButton(false);
                 uiCountPressButton();
             }
-			const val2 = (new Uint8Array(e.target.value.buffer))[0];
-			uiTemp(val2);
-            if (val2 > 0) {
-                // press
-                uiToggleStateButton(true);
-            } else {
-                // release
-                uiToggleStateButton(false);
-                uiCountPressButton();
-            }
         });
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
