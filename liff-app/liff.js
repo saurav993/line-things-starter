@@ -281,17 +281,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
                 uiToggleStateButton(false);
                 uiCountPressButton();
             }
-        });
-    }).catch(error => {
-        uiStatusError(makeErrorMsg(error), false);
-    });
-}
-function liffGetButtonStateCharacteristic(characteristic) {
-    // Add notification hook for button state
-    // (Get notified when button state changes)
-    characteristic.startNotifications().then(() => {
-        characteristic.addEventListener('characteristicvaluechanged', e => {
-            const val2 = (new Uint8Array(e.target.value.buffer))[0];
+			const val2 = (new Uint8Array(e.target.value.buffer))[0];
 			uiTemp(val2);
             if (val2 > 0) {
                 // press
