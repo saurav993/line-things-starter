@@ -75,21 +75,6 @@ function uiHumid(val2) {
 	   el.innerText = val2;
 	   
 }
-function uiPres(val3) {
-	const el = document.getElementById("pres-val");
-	   el.innerText = val3;
-	   
-}
-function uiMois(val4) {
-	const el = document.getElementById("mois-val");
-	   el.innerText = val4;
-	   
-}
-function uiLight(val5) {
-	const el = document.getElementById("light-val");
-	   el.innerText = val5;
-	   
-}
 
 function uiToggleDeviceConnected(connected) {
     const elStatus = document.getElementById("status");
@@ -282,10 +267,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
                 uiCountPressButton();
             }
         });
-    }).catch(error => {
-        uiStatusError(makeErrorMsg(error), false);
-    });
-	characteristic.addEventListener('characteristicvaluechanged', f => {
+		characteristic.addEventListener('characteristicvaluechanged', f => {
             const val2 = (new Uint8Array(f.target.value.buffer))[0];
 			uiHumid(val2);
 			if (val2 > 0) {
