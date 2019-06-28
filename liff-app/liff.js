@@ -75,6 +75,21 @@ function uiHumid(val2) {
 	   el.innerText = val2;
 	   
 }
+function uiPres(val3) {
+	const el = document.getElementById("humid-val");
+	   el.innerText = val3;
+	   
+}
+function uiMois(val4) {
+	const el = document.getElementById("humid-val");
+	   el.innerText = val4;
+	   
+}
+function uiLight(val5) {
+	const el = document.getElementById("humid-val");
+	   el.innerText = val5;
+	   
+}
 
 function uiToggleDeviceConnected(connected) {
     const elStatus = document.getElementById("status");
@@ -271,6 +286,42 @@ function liffGetButtonStateCharacteristic(characteristic) {
             const val2 = (new Uint8Array(f.target.value.buffer))[0];
 			uiHumid(val2);
 			if (val2 > 0) {
+                // press
+                uiToggleStateButton(true);
+            } else {
+                // release
+                uiToggleStateButton(false);
+                uiCountPressButton();
+            }
+        });
+		characteristic.addEventListener('characteristicvaluechanged', f => {
+            const val3 = (new Uint8Array(f.target.value.buffer))[0];
+			uiPres(val3);
+			if (val > 0) {
+                // press
+                uiToggleStateButton(true);
+            } else {
+                // release
+                uiToggleStateButton(false);
+                uiCountPressButton();
+            }
+        });
+		characteristic.addEventListener('characteristicvaluechanged', f => {
+            const val4 = (new Uint8Array(f.target.value.buffer))[0];
+			uiMois(val4);
+			if (val4 > 0) {
+                // press
+                uiToggleStateButton(true);
+            } else {
+                // release
+                uiToggleStateButton(false);
+                uiCountPressButton();
+            }
+        });
+		characteristic.addEventListener('characteristicvaluechanged', f => {
+            const val5 = (new Uint8Array(f.target.value.buffer))[0];
+			uiLight(val5);
+			if (val5 > 0) {
                 // press
                 uiToggleStateButton(true);
             } else {
