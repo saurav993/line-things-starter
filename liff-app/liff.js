@@ -37,7 +37,7 @@ function handlerToggleLed() {
 
 function uiToggleLedButton(state) {
     const el = document.getElementById("btn-led-toggle");
-    el.innerText = state ? "Switch LED OFF" : "Switch LED ON";
+    el.innerText = state ? "Switch WATER OFF" : "Switch WATER ON";
 
     if (state) {
       el.classList.add("led-on");
@@ -274,6 +274,21 @@ function liffGetButtonStateCharacteristic(characteristic) {
             const val = (new Uint8Array(e.target.value.buffer))[0];
 			uiTemp(val);
             if (val > 0) {
+                // press
+                uiToggleStateButton(true);
+            } else {
+                // release
+                uiToggleStateButton(false);
+                uiCountPressButton();
+            }
+        });
+    }).catch(error => {
+        uiStatusError(makeErrorMsg(error), false);
+    });
+	characteristic.addEventListener('characteristicvaluechanged', f => {
+            const val2 = (new Uint8Array(f.target.value.buffer))[0];
+			uiHumid(val2);
+			if (val2 > 0) {
                 // press
                 uiToggleStateButton(true);
             } else {
